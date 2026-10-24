@@ -1,0 +1,15 @@
+# Old GoDaddy site addresses -> new pages (301 = permanent, so search rankings carry over).
+# Source: the old site's sitemap.website.xml (13 pages, no blog posts).
+
+/demo                    /contact#demo        301
+/thank-you               /contact             301
+/get-iqagent-enterprise  /iqagent/            301
+/resources               /iqagent/            301
+/videos                  /iqagent/#how        301
+/devices                 /iqagent/            301
+/forms                   /iqagent/            301
+/benefits                /iqagent/            301
+/plant-digitalization    /iqagent/            301
+/privacy-statement       /privacy             301
+/blog                    /                    301
+/blog/*                  /                    301
