@@ -10,7 +10,7 @@ Relaunch iQagent (the mobile plant-floor app, sold since 2011, no sales in about
 
 - Repo: `C:\Users\bmeads\Documents\Dev\Source\iqagent-site`, private on GitHub at `iquestor/iqagent-site` (account IQUESTOR, personal). Plain static HTML/CSS, no build step.
 - `main/` is the brand site for **iqagent.com**: home, `iqagent/` (product page), `contact.html`, `privacy.html`, `eula.html`, `_redirects`, `robots.txt`, `sitemap.xml`, `css/`, `images/`.
-- `software/` is the Archive Data Extractor site for **software.iqagent.com** (copied from `WinCCArchiveDataExtractor/site`). It includes the signed 1.0.1.3 installer in `software/downloads/`, served from the site on purpose (1.2 MB, R2 can wait).
+- `software/` is the Archive Data Extractor site for **software.iqagent.com** (copied from `WinCCArchiveDataExtractor/site`). It includes the signed 1.0.1.4 installer in `software/downloads/`, served from the site on purpose (1.2 MB, R2 can wait).
 - The app repo (`WinCCArchiveDataExtractor`) still has its own `site/` folder and uncommitted changes. Nothing there was touched. Remove its `site/` and update its `CLAUDE.md` only after the swap below.
 
 ## Cloudflare and domain state
