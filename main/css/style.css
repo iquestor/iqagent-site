@@ -127,3 +127,5 @@ footer.site .links a{margin-right:16px}
 .stat b{display:block;font-size:2.2rem;line-height:1.1;color:var(--accent-dark)}
 .stat span{color:var(--muted);font-size:.95rem}
 .hero .btn.ghost{color:#fff}
+.video{position:relative;aspect-ratio:16/9;max-width:860px;margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.2);background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
