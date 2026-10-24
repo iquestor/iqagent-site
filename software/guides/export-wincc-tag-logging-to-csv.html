@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Export WinCC Tag Logging Data to CSV | iQagent</title>
+<meta name="description" content="How to get WinCC tag logging data out of archives and into CSV for Excel or SQL Server: the options, the pitfalls, and a step-by-step walkthrough.">
+<link rel="canonical" href="https://software.iqagent.com/guides/export-wincc-tag-logging-to-csv.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#20262d">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="iQagent">
+<meta property="og:description" content="The options for getting WinCC tag logging data into CSV for Excel or SQL Server, and a step-by-step walkthrough.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="How to export WinCC tag logging data to CSV">
+<meta property="og:url" content="https://software.iqagent.com/guides/export-wincc-tag-logging-to-csv.html">
+<meta property="og:image" content="https://software.iqagent.com/images/archive_main.png">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "headline": "How to export WinCC tag logging data to CSV",
+   "url": "https://software.iqagent.com/guides/export-wincc-tag-logging-to-csv.html",
+   "datePublished": "2026-10-13",
+   "dateModified": "2026-10-21",
+   "author": {
+    "@type": "Organization",
+    "name": "iQagent"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "iQagent",
+    "url": "https://software.iqagent.com/"
+   },
+   "image": "https://software.iqagent.com/images/archive_main.png"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Can I export WinCC tag logging data with plain SQL?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not directly. Tag logging archives are stored compressed, so a normal SQL query can't read them. You need the WinCC OLE DB provider, which is installed with WinCC and with the WinCC Connectivity Pack."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I need WinCC installed to read the archive files?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. You need the archive files, a PC with SQL Server, and the WinCC OLE DB provider. You don't need the WinCC project."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does this work with WinCC Professional?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Archive Data Extractor for WinCC supports WinCC SCADA V7.4 through the current version, and WinCC Professional. WinCC Unified is not supported."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will exporting affect my running WinCC system?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The tool only reads data. It doesn't detach or change archives that WinCC has attached. Very large exports add load to the SQL Server while they run, so schedule them sensibly."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I export averages, minimums or maximums instead of every value?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Choose Aggregate in the Processing dialog: average, min, max, first, last, sum or count, over an interval from 1 second to 31 days. You get one row per interval for each tag, stamped with the start of the interval."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I export the last good value of each day for each tag?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Choose Last value per interval in the Processing dialog, set the interval to 1 day and the quality to Good only. If the last values of the day are bad, for example because a PLC went offline, you get the last value logged while the quality was good. A day with no good value gives no row."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I export only values above or below a limit?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, for raw values. Add a value test such as greater than 100 in the Processing dialog. Filtered output goes to separate files, and a filter can't be combined with an aggregate."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I stop the timestamps looking identical in Excel?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Excel hides the date and hour on times that include milliseconds. The data is intact. Format the column with the custom format yyyy-mm-dd hh:mm:ss.000 to display it in full."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site"><div class="wrap">
+  <a class="logo" href="../index.html">iQagent <span>Software</span></a>
+  <nav class="main">
+    <a href="../index.html#features">Features</a>
+    <a href="../index.html#requirements">Requirements</a>
+    <a href="../index.html#pricing">Pricing</a>
+    <a href="../index.html#faq">FAQ</a>
+    <a href="../support.html">Support</a>
+    <a class="btn" href="../index.html#download">Free trial</a>
+  </nav>
+</div></header>
+
+<article><div class="wrap narrow" style="padding-top:48px;padding-bottom:48px">
+  <p class="fine" style="margin:0 0 8px"><a href="../index.html">Home</a> &rsaquo; Guides</p>
+  <h1>How to export WinCC tag logging data to CSV</h1>
+  <p class="lead">You need historical process values out of WinCC and into Excel, SQL Server or another database. This guide covers why it&rsquo;s harder than it looks, the ways to do it, and a step-by-step walkthrough. It applies to WinCC SCADA V7.4 and later and to WinCC Professional.</p>
+
+  <h2>The short answer</h2>
+  <p>Tag logging archives can&rsquo;t be read with a plain SQL query, so you have to go through the WinCC OLE DB provider, or use a tool that does it for you. The result you want is one CSV file per tag, or one file for all tags, with timestamps you can trust.</p>
+
+  <h2>Why it&rsquo;s harder than it looks</h2>
+  <ul class="plain">
+    <li><strong>The archives are compressed.</strong> Tag logging data sits in SQL Server databases (<code>.mdf</code> files), but in a compressed form. A normal <code>SELECT</code> doesn&rsquo;t return readable values.</li>
+    <li><strong>You need the WinCC OLE DB provider.</strong> It&rsquo;s installed with WinCC, and with the WinCC Connectivity Pack on PCs that don&rsquo;t have WinCC.</li>
+    <li><strong>Time zones are easy to get wrong.</strong> Archive timestamps are stored in UTC. Your plant works in local time, including daylight-saving changes.</li>
+    <li><strong>Size limits.</strong> Excel stops at about one million rows, and busy tags log far more than that.</li>
+  </ul>
+
+  <h2>Ways to get the data out</h2>
+  <h3>1. WinCC&rsquo;s own export options</h3>
+  <p>WinCC can export logged values from a running system. You can export directly from the trend screen, which exports the data currently being displayed, but the output format can be confusing. This is fine for a quick look at what&rsquo;s on screen. It gets slow and manual when you need many tags, long periods, or data from a system that isn&rsquo;t running.</p>
+  <h3>2. SQL Server Management Studio through the OLE DB provider</h3>
+  <p>You can query the archives from SQL Server Management Studio using the WinCC OLE DB provider and send the result to Excel. It works, but it is limited and slow for large exports, and you have to handle the UTC conversion yourself.</p>
+  <h3>3. Write your own code with the WinCC Connectivity Pack</h3>
+  <p>You can write your own program using the WinCC Connectivity Pack. This takes a standard programming language and ADO to run queries against the WinCC OLE DB provider. You also need to know SQL syntax and the specific query commands the Connectivity Pack uses. It gives you full control, but you have to build and maintain everything yourself, including time-zone handling, file splitting and error reporting.</p>
+  <h3>4. A purpose-built tool</h3>
+  <p><a href="../index.html">Archive Data Extractor for WinCC</a> does the OLE DB work for you. It reads a folder of archive files, or a running project, and writes CSV files in one run. The rest of this guide shows how.</p>
+
+  <h2>Step by step: export tag logging to CSV</h2>
+  <ol>
+    <li><strong>Choose a source.</strong> Select <em>Archive DB folder</em> to read a folder of <code>.mdf</code> files from a running system, a stopped system, or a backup copied from another PC. Every file in the folder is processed in one run. Or select <em>Running WinCC project</em> to read the newest values from the runtime database, including over the network from another PC&rsquo;s SQL Server.
+      <figure style="margin:14px 0"><img class="shot" src="../images/archive_main.png" alt="Archive Data Extractor for WinCC main window with the Archive DB folder source selected for WinCC archive .mdf files" width="716" height="717" loading="lazy"></figure></li>
+    <li><strong>Set the date range and time zone.</strong> Enter the range in your plant&rsquo;s time zone. The tool shows the UTC range it will request.</li>
+    <li><strong>Filter the tags (optional).</strong> Export everything, or use a tag list with wildcards. Tag names are case-sensitive.
+      <figure style="margin:14px 0"><img class="shot" src="../images/Tag%20Lists.png" alt="Tag list dialog for filtering WinCC tags with wildcards" width="562" height="568" loading="lazy" style="max-width:360px"></figure></li>
+    <li><strong>Design the CSV layout (optional).</strong> Choose the columns, order, delimiter and timestamp format, add fixed-text columns, and see a live preview. Start from the <em>Bulk insert</em> preset if you&rsquo;re loading into a database.
+      <figure style="margin:14px 0"><img class="shot" src="../images/Output_Format_Dialog.png" alt="Output format dialog showing columns, delimiter and a live preview" width="704" height="532" loading="lazy"></figure></li>
+    <li><strong>Choose the processing (optional).</strong> By default you get every logged value. Click <em>Processing&hellip;</em> to export one aggregate per interval instead (average, min, max, first, last, sum or count, from 1 second to 31 days), which makes the files much smaller. Or get the <em>last value per interval</em>, such as the last good value of each day, which still works when a PLC goes offline and the last values of the day are bad. For raw values you can also keep only the values that pass a test, such as above 100, or that have at least a minimum quality.
+      <figure style="margin:14px 0"><img class="shot" src="../images/Data_Type_Last_Value.png" alt="Processing dialog set to the last good value of each day" width="576" height="579" loading="lazy" style="max-width:400px"></figure></li>
+    <li><strong>Click Process.</strong> Progress is shown per archive. <em>Cancel On Next DB</em> and <em>Stop Now</em> end a run early, and values already written stay in the files.</li>
+    <li><strong>Open the results.</strong> By default you get one CSV per tag in a folder named for the year and month of your start date. <code>ArchiveStats.txt</code> lists how many values were exported for each tag, and <code>Errors.txt</code> lists any problems.
+      <figure style="margin:14px 0"><img class="shot" src="../images/excel_output.png" alt="WinCC tag logging data exported to CSV and opened in Excel, showing tag name, UTC and local timestamps, value and quality code" width="946" height="453" loading="lazy"></figure></li>
+  </ol>
+
+  <h2>Things to watch for</h2>
+  <ul class="plain">
+    <li><strong>Time zones.</strong> Every row carries both UTC and local time, so daylight-saving changes don&rsquo;t cause gaps or duplicates.</li>
+    <li><strong>Excel limits.</strong> Set a row limit up to 1,000,000. A new file starts when it&rsquo;s reached, so each one still opens in Excel.</li>
+    <li><strong>Work on copies.</strong> Attaching an archive file to a newer SQL Server version upgrades it permanently. The tool warns you first, and the default answer is No.</li>
+    <li><strong>Duplicate rows.</strong> Files are appended to. Running the same export twice writes every row twice, so use an empty output folder.</li>
+    <li><strong>Aggregates.</strong> Each row is stamped with the start of its interval, and an interval with no logged values gives no row. For average, sum and count WinCC returns a quality of 0, which isn&rsquo;t a summary of the values, so the default aggregate layout leaves the quality column out. An interval that spans two archive files gives two partial rows.</li>
+    <li><strong>Quality codes.</strong> A quality code is a byte whose top two bits give the class: 0&ndash;63 bad, 64&ndash;127 uncertain, 128 and up good. A &ldquo;good only&rdquo; choice therefore means 128 or more, which keeps out the codes an offline PLC reports.</li>
+    <li><strong>Value filters.</strong> They apply to raw values only, and the output goes to separate files with <code>_filtered</code> in the name. Two different filters over the same range append to the same <code>_filtered</code> files, so give each its own output folder.</li>
+  </ul>
+
+  <h2>What you need</h2>
+  <ul class="plain">
+    <li>Windows with .NET Framework 4.6.1 or later</li>
+    <li>The WinCC OLE DB provider (installed with WinCC or the WinCC Connectivity Pack)</li>
+    <li>A SQL Server you can reach with your Windows login, and permission to attach and detach databases for archive folders</li>
+  </ul>
+  <p>Supported: WinCC SCADA V7.4 through the current version, and WinCC Professional. Not supported: WinCC Unified.</p>
+
+  <div class="tip"><strong>Try it on your own archives.</strong> The free trial exports up to 24 hours of data per run, enough to confirm it reads your archives and that your CSV layout is right. <a class="btn small" href="../download.html" style="margin-left:8px">Download free trial</a></div>
+
+  <h2>Frequently asked questions</h2>
+  <details><summary>Can I export WinCC tag logging data with plain SQL?</summary><p>Not directly. Tag logging archives are stored compressed, so a normal SQL query can't read them. You need the WinCC OLE DB provider, which is installed with WinCC and with the WinCC Connectivity Pack.</p></details>
+  <details><summary>Do I need WinCC installed to read the archive files?</summary><p>No. You need the archive files, a PC with SQL Server, and the WinCC OLE DB provider. You don't need the WinCC project.</p></details>
+  <details><summary>Does this work with WinCC Professional?</summary><p>Yes. Archive Data Extractor for WinCC supports WinCC SCADA V7.4 through the current version, and WinCC Professional. WinCC Unified is not supported.</p></details>
+  <details><summary>Will exporting affect my running WinCC system?</summary><p>The tool only reads data. It doesn't detach or change archives that WinCC has attached. Very large exports add load to the SQL Server while they run, so schedule them sensibly.</p></details>
+  <details><summary>Can I export averages, minimums or maximums instead of every value?</summary><p>Yes. Choose <em>Aggregate</em> in the Processing dialog: average, min, max, first, last, sum or count, over an interval from 1 second to 31 days. You get one row per interval for each tag, stamped with the start of the interval.</p></details>
+  <details><summary>Can I export the last good value of each day for each tag?</summary><p>Yes. Choose <em>Last value per interval</em> in the Processing dialog, set the interval to 1 day and the quality to <em>Good only</em>. If the last values of the day are bad, for example because a PLC went offline, you get the last value logged while the quality was good. A day with no good value gives no row.</p></details>
+  <details><summary>Can I export only values above or below a limit?</summary><p>Yes, for raw values. Add a value test such as greater than 100 in the Processing dialog. Filtered output goes to separate files, and a filter can't be combined with an aggregate.</p></details>
+  <details><summary>How do I stop the timestamps looking identical in Excel?</summary><p>Excel hides the date and hour on times that include milliseconds. The data is intact. Format the column with the custom format <code>yyyy-mm-dd hh:mm:ss.000</code> to display it in full.</p></details>
+  
+  <p style="margin-top:28px"><a href="../index.html#faq">More questions and answers</a> &middot; <a href="../index.html#pricing">Pricing</a> &middot; <a href="../support.html">Support</a></p>
+</div></article>
+<footer class="site"><div class="wrap">
+  <p class="links"><a href="../eula.html">EULA</a><a href="../privacy.html">Privacy Notice</a><a href="../refund.html">Refund Policy</a><a href="export-wincc-tag-logging-to-csv.html">Guides</a><a href="../support.html">Support</a></p>
+  <p>&copy; 2026 iQagent, Inc. All rights reserved.</p>
+  <p>iQagent &middot; Mailing address: 5174 McGinnis Ferry Road, #143, Alpharetta, GA 30005, United States &middot; <a href="mailto:bob.meads@iqagent.com">bob.meads@iqagent.com</a></p>
+  <p>Siemens, SIMATIC and WinCC are trademarks or registered trademarks of Siemens AG. iQagent is not affiliated with, or endorsed by, Siemens AG. Microsoft, Windows, SQL Server and Excel are trademarks of the Microsoft group of companies.</p>
+</div></footer>
+</body>
+</html>
