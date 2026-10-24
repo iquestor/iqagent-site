@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://iqagent.com/</loc></url>
   <url><loc>https://iqagent.com/iqagent/</loc></url>
   <url><loc>https://iqagent.com/contact.html</loc></url>
+  <url><loc>https://iqagent.com/privacy.html</loc></url>
+  <url><loc>https://iqagent.com/eula.html</loc></url>
 </urlset>
