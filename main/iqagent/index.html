@@ -77,9 +77,11 @@
   <h2>Integrations, deployment and security</h2>
   <p class="lead">Plant IT teams ask about this first, so we put it up front.</p>
   <ul class="plain">
-    <li><strong>Live data sources:</strong> <span class="ph">PLACEHOLDER: list the systems iQagent reads from (for example WinCC, OPC UA, databases)</span></li>
+    <li><strong>Live data sources:</strong> OPC DA, OPC UA and ODBC databases.</li>
     <li><strong>Hosting:</strong> on-premises server, cloud server or VM.</li>
-    <li><strong>Security:</strong> <span class="ph">PLACEHOLDER: authentication, roles, encryption, whether data leaves the plant network</span></li>
+    <li><strong>Encryption:</strong> all traffic between the apps and the server is encrypted with SSL.</li>
+    <li><strong>Device registration:</strong> each client app has a token that must be registered with the server before it can connect, so unknown devices can&rsquo;t get in.</li>
+    <li><strong>Your data stays with you:</strong> iQagent doesn&rsquo;t send plant data anywhere. The only information that leaves your network is the push notifications you set up yourself.</li>
   </ul>
 </div></section>
 
@@ -95,6 +97,8 @@
   <details><summary>Do we need to replace our asset tags?</summary><p>No. iQagent can map POIs to the asset tags you already use.</p></details>
   <details><summary>Does it work without a network connection?</summary><p>Forms can be completed offline and are uploaded when the device reconnects.</p></details>
   <details><summary>Where does it run?</summary><p>On your own server, a cloud server or a virtual machine.</p></details>
+  <details><summary>Where does the live data come from?</summary><p>iQagent reads from OPC DA servers, OPC UA servers and ODBC databases.</p></details>
+  <details><summary>Is it secure?</summary><p>Traffic between the apps and the server is encrypted with SSL. Each client app has a token that must be registered with the server before it can connect. iQagent doesn&rsquo;t send plant data to us or to anyone else. Only the push notifications you configure leave your network.</p></details>
   <details><summary>Which devices are supported?</summary><p>iOS, Android and RealWear HMT smart glasses.</p></details>
 </div></section>
 
