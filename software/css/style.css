@@ -34,13 +34,17 @@ nav.main .btn{margin-left:18px;padding:7px 14px}
 
 /* hero */
 .hero{background:linear-gradient(160deg,#20262d 0%,#323b45 100%);color:#fff;padding:64px 0 56px}
-.hero .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.hero .wrap,header.site .wrap,.wrap.wide{max-width:1240px}
+.hero .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
 .hero h1{font-size:2.3rem;line-height:1.2;margin:0 0 16px}
 .hero p.sub{font-size:1.1rem;color:#d8dde2;margin:0 0 26px}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
 .hero .fine{margin-top:18px;font-size:.88rem;color:#b9c0c8}
 .shot{border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.25);background:#fff}
 .hero .shot{border-color:rgba(255,255,255,.25)}
+.hero-art{position:relative;margin:0;padding:0 0 70px;background:radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.10),transparent 70%)}
+.hero-art .shot{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.3)}
+.hero-art .shot.over{position:absolute;right:0;bottom:0;width:56%;border-radius:8px;border-color:rgba(255,255,255,.35);box-shadow:0 14px 36px rgba(0,0,0,.5)}
 
 /* sections */
 section{padding:56px 0}
@@ -61,6 +65,11 @@ section.alt .card{background:var(--bg)}
 figure{margin:0}
 figcaption{font-size:.88rem;color:var(--muted);margin-top:8px}
 .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:28px;margin-top:28px}
+.shots .shot{cursor:zoom-in}
+.shots figure.sm{max-width:520px;width:100%;margin:0 auto}
+dialog.lightbox{border:0;padding:0;background:transparent;max-width:96vw;max-height:96vh;cursor:zoom-out}
+dialog.lightbox::backdrop{background:rgba(0,0,0,.8)}
+dialog.lightbox img{display:block;max-width:96vw;max-height:96vh;width:auto;height:auto;border-radius:8px}
 
 ul.plain{padding-left:20px}
 ul.plain li{margin:6px 0}
@@ -101,6 +110,7 @@ footer.site .links a{margin-right:16px}
   .shots{grid-template-columns:1fr}
   .hero .grid{grid-template-columns:1fr}
   .hero h1{font-size:1.8rem}
+  .hero-art .shot.over{right:0;width:66%}
   nav.main a{margin-left:12px}
   nav.main{width:100%;padding-bottom:10px}
   nav.main a:first-child{margin-left:0}
