@@ -1,2 +1,6 @@
 .wrangler/
 
+
+# Secrets and local tooling
+paddle API Key.txt
+.claude/
