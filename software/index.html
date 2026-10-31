@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <title>WinCC Tag Logging Export to CSV – Archive Data Extractor | iQagent</title>
-<meta name="description" content="Export WinCC tag logging archives to CSV for Excel or SQL Server. Reads archive .mdf files offline or a running project. WinCC SCADA and Professional.">
+<meta name="description" content="Export WinCC Tag Logging Data to CSV for Excel or SQL Server. Reads archive .mdf files offline or a running project. WinCC SCADA and Professional.">
 <link rel="canonical" href="https://software.iqagent.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#20262d">
@@ -198,6 +201,14 @@
     },
     {
      "@type": "Question",
+     "name": "Can I run several exports in one go?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, with a license. Set up the main window for one export and click Add current settings in the Batch window, then repeat for each export and click Run batch. Each item runs in turn with the same checks as a normal export and writes its own ArchiveStats.txt and Errors.txt, and a summary of the batch goes to BatchLog.txt. An item that can't run is marked Failed and the batch carries on. You can stop the batch at any time, and export the list to a file to keep several batches. Batch isn't available in the free trial."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Can I stop an export part way through?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -282,8 +293,8 @@
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <h1>Export WinCC tag logging archives to CSV for Excel, SQL Server, or any database.</h1>
-    <p class="sub">Archive Data Extractor for WinCC gets tag logging data out of WinCC SCADA and WinCC Professional archives and into clean CSV files, one per tag or everything in a single file, with correct time zones. Export every value, or one value per interval: averages, minimums, maximums, or the last good value of the day. Reads in parallel, so large exports finish up to 2.5 times faster. Run it on a live system or on archive files copied from a plant PC.</p>
+    <h1>Export WinCC Tag Logging data to CSV for Excel, SQL Server, or any database.</h1>
+    <p class="sub">Archive Data Extractor for WinCC extracts tag logging data from WinCC SCADA and WinCC Professional archives and into clean CSV files, one per tag or everything in a single file, with correct time zones. Export every value, or one value per interval: averages, minimums, maximums, or the last good value of the day. Save your export setups and run them together as a batch. Reads in parallel, so large exports finish up to 2.5 times faster. Run it on a live system or on archive files copied from a plant PC.</p>
     <div class="cta"><a class="btn" href="#download">Download free trial</a><a class="btn ghost" href="#pricing">See pricing</a></div>
     <p class="fine">Windows &middot; Works offline, licenses never need an internet connection &middot; WinCC SCADA V7.4 through the current version, and WinCC Professional</p>
   </div>
@@ -302,21 +313,15 @@
 
 <section class="alt" id="features"><div class="wrap">
   <h2>Why You Need This Tool</h2>
-  <div class="cards">
-    <div class="card"><h3>Faster with parallel reading</h3><p>Asks WinCC for 20 tags per request and sends several requests at once. The <strong>Parallel</strong> setting (1 to 8, default 4) is a single box in the main window, and the output is identical whatever you choose.</p></div>
-    <div class="card"><h3>Reads archives wherever they are</h3><p>Point it at a folder of tag logging <code>.mdf</code> files from a running system, a stopped system, or a backup copied from another PC. It processes every file in the folder in one run, so there&rsquo;s no handling files one by one. All you need is the archive files. You don&rsquo;t need the WinCC project.</p></div>
-    <div class="card"><h3>Or pulls from a running project</h3><p>Gets the newest values, up to now, from the open project&rsquo;s runtime database. This works over the network, so you can read from another PC&rsquo;s SQL Server.</p></div>
-    <div class="card"><h3>One file per tag, or one for all</h3><p>Predictable file names in a year and month folder, ready for scripts and bulk loads. Or put every tag in a single file. Either way, a new file is started when the row limit you set is reached (up to 1,000,000), so each file still opens in Excel.</p></div>
-    <div class="card"><h3>Time zones done right</h3><p>Enter your range in the plant&rsquo;s time zone. Every row carries both UTC and local time, including daylight-saving changes.</p></div>
-    <div class="card"><h3>Your layout, your columns</h3><p>Choose columns, order, delimiter, and timestamp format. Add fixed-text (literal) columns, empty columns, and columns built from part of the tag name, such as a station ID. Start from the &ldquo;Bulk insert&rdquo; preset for loading into a database, and save your layout to a file to reuse it on another PC.</p></div>
-    <div class="card"><h3>Only the tags you want</h3><p>Export everything, or filter with a tag list that supports wildcards. Import lists from a text or CSV file, and export them to keep a separate list for each job. After the run, any entry that matched no tag is reported, with a &ldquo;did you mean&hellip;?&rdquo; hint when only the capitalization differs.</p></div>
-    <div class="card"><h3>Averages, minimums, maximums and more</h3><p>Instead of every logged value, get <strong>one value per interval</strong>: average, min, max, first, last, sum or count, for any interval from 1 second to 31 days. Hourly averages or daily maximums for each tag make files a fraction of the size. Each row is stamped with the start of its interval.</p></div>
-    <div class="card"><h3>The last good value, even when a PLC drops out</h3><p>Get the <strong>last value of each day</strong> (or hour, or any interval) that has the quality you want. If a PLC goes offline and the last values of the day are bad, you still get the last value logged while the quality was good. Choose <em>Good only</em>, <em>Uncertain or better</em> or <em>Any quality</em>, based on WinCC&rsquo;s own quality codes.</p></div>
-    <div class="card"><h3>Filter by value or quality</h3><p>For raw values, keep only the rows that pass up to four value tests, such as above 100 and below 200, or that have at least a minimum quality. Filtered files are named separately, so they never mix with your unfiltered exports.</p></div>
-    <div class="card"><h3>Doesn&rsquo;t disturb a live system</h3><p>It only reads. Archives WinCC has attached are read in place and left attached. Before it attaches anything, it warns you if a file would be upgraded by your SQL Server, and the default answer is No.</p></div>
-    <div class="card"><h3>Stop it when you need to</h3><p><strong>Cancel On Next DB</strong> finishes the archive being read and then stops. <strong>Stop Now</strong> stops after the current tag without waiting for the archive to finish. Values already written stay in the files.</p></div>
-    <div class="card"><h3>See what happened</h3><p>Every run writes <code>ArchiveStats.txt</code> with the values exported per tag and how long each database took. Problems with individual tags go to <code>Errors.txt</code>. <strong>Open output folder</strong> and <strong>View errors</strong> buttons take you straight to them.</p></div>
-    <div class="card"><h3>Clear messages when something&rsquo;s wrong</h3><p>Pre-checks for SQL Server, permissions, and the WinCC OLE DB provider before touching any database, with plain advice on what to do.</p></div>
+  <div class="features">
+    <div><h3>Read from Offline or Running WinCC Projects</h3><p>A folder of offline tag logging <code>.mdf</code> files, or the latest values from a running WinCC project, local or across the network.</p></div>
+    <div><h3>Fast!</h3><p>Requests 20 tags at a time and runs up to 8 requests in parallel, so large exports can finish up to 2.5 times faster. <a href="#speed">See the numbers</a>.</p></div>
+    <div><h3>Time zones done right</h3><p>Enter desired Time &amp; Date ranges in the plant&rsquo;s time zone versus Tag Logging&rsquo;s UTC database entries.</p></div>
+    <div><h3>Choose Raw Values, Aggregate Functions</h3><p>One value per interval, from 1 second to 31 days: average, min, max, first, last, sum or count. Filter values by quality codes and ranges. </p></div>
+    <div><h3>Customized CSV Output</h3><p>Choose columns, delimiter and timestamp format. One file per tag or all in one, split at a row limit so files still open in Excel.</p></div>
+    <div><h3>Only the tags you want</h3><p>Filter with wildcard tag lists, imported from a file. Unmatched entries are reported.</p></div>
+    <div><h3>Batch Exports</h3><p>Save multiple export settings as a batch and run them all with one click. <em>Requires a license.</em></p></div>
+    <div><h3>Safe on a live system</h3><p>Read-only, and it warns before a file would be upgraded. Stop any time, with a stats log and clear error messages.</p></div>
   </div>
 </div></section>
 
@@ -356,7 +361,7 @@
   <p class="lead">One CSV file per tag, in a year and month folder taken from your start date. Prefer one file for everything? Choose &ldquo;All tags in one file&rdquo; and it starts a new file at a row limit you set, up to 1,000,000 rows, so each one still opens in Excel. The same limit applies to per-tag files, which continue in a second file when one fills up. Open them in Excel, or import them into SQL Server or any standard database, such as Oracle, MySQL, PostgreSQL or Microsoft Access.</p>
   <div class="shots">
     <figure><img class="shot" src="images/csv_folder.png" alt="Output folder showing one CSV file per WinCC tag" width="802" height="377" loading="lazy"><figcaption>The output folder, named for the year and month of your start date. By default there is one CSV per tag. <code>ArchiveStats.txt</code> reports how many values were exported for each tag, and how long the run took. If you export a tag list, <code>UnmatchedTags.txt</code> lists any entries that matched no tag.</figcaption></figure>
-    <figure><img class="shot" src="images/excel_output.png" alt="WinCC tag logging data exported to CSV and opened in Excel, showing tag name, UTC and local timestamps, value and quality code" width="946" height="453" loading="lazy"><figcaption>Opened in Excel. Every row has both UTC and local time.</figcaption></figure>
+    <figure><img class="shot" src="images/excel_output.png" alt="WinCC tag logging data exported to CSV and opened in Excel, showing tag name, UTC and local timestamps, value and quality code" width="946" height="453" loading="lazy"><figcaption>Opened in Excel. Output Format can be customized.</figcaption></figure>
     <figure style="grid-column:1/-1;max-width:900px;margin:0 auto"><img class="shot" src="images/csv_text.png" alt="WinCC archive data exported as CSV, shown in a plain text editor" width="1139" height="608" loading="lazy"><figcaption>Or as plain text, ready to import into SQL Server or any other database.</figcaption></figure>
   </div>
 </div></section>
@@ -367,6 +372,7 @@
   <ul class="plain">
     <li><strong>Export WinCC tag logging to Excel or CSV</strong> for reports, trend analysis and audits, in the plant&rsquo;s time zone.</li>
     <li><strong>Get daily or hourly values for reports</strong>: the last good value of each day for every tag, even if a PLC was offline at the end of the day, or hourly averages, minimums and maximums for trend reports.</li>
+    <li><strong>Repeat the same exports without re-entering settings</strong>: save each export as a batch item, such as daily last good values and hourly averages for different tag lists, and run them all with one click.</li>
     <li><strong>Migrate WinCC historical data</strong> to SQL Server, Oracle, PostgreSQL or another historian when you move to a new platform.</li>
     <li><strong>Recover process data from archive backups.</strong> Read copied <code>.mdf</code> files from a stopped, failed or decommissioned system, without the WinCC project.</li>
     <li><strong>Pull the latest values from a running project</strong>, including over the network from another PC&rsquo;s SQL Server.</li>
@@ -408,7 +414,7 @@
       <ul><li>Yours to keep</li><li>1 year of updates included</li><li>Renewal by quote</li><li>Users by agreement</li></ul><a class="btn" href="mailto:bob.meads@iqagent.com?subject=Site%20license%20quote">Request a quote</a></div>
   </div>
   <ul class="notes plain" style="margin-top:28px">
-    <li><strong>Free trial</strong> with no license file: exports up to 24 hours of data per run, so you can confirm it reads your archives and your CSV layout is right.</li>
+    <li><strong>Free trial</strong> with no license file: exports up to 24 hours of data per run, so you can confirm it reads your archives and your CSV layout is right. Batch runs need a license.</li>
     <li><strong>Licenses belong to a person, not a computer.</strong> Install it on your laptop, a client&rsquo;s PC, or a plant PC. Just don&rsquo;t share your license file with someone else. Each person needs their own.</li>
     <li><strong>&ldquo;Yours to keep&rdquo; means</strong> the version you bought and every update released during your update period keep working forever. After that you can keep using your last covered version, or renew for newer ones.</li>
     <li><strong>Need an invoice or a purchase order?</strong> Email <a href="mailto:bob.meads@iqagent.com">bob.meads@iqagent.com</a> and we&rsquo;ll set it up.</li>
@@ -418,7 +424,7 @@
 
 <section class="alt" id="download"><div class="wrap narrow">
   <h2>Try it free</h2>
-  <p>The trial needs no license file. Download the installer, run it, and point it at your archives. It exports up to 24 hours of data per run, which is enough to check that it reads your archives and that your CSV layout is right.</p>
+  <p>The trial needs no license file. Download the installer, run it, and point it at your archives. It exports up to 24 hours of data per run, which is enough to check that it reads your archives and that your CSV layout is right. Batch runs are part of the licensed tool.</p>
   <p><a class="btn" href="download.html">Download for Windows</a></p>
   <p class="lead"><strong>Seeing a warning?</strong> New downloads often trigger one. Chrome may say the file &ldquo;isn&rsquo;t commonly downloaded&rdquo;: open the download menu and choose <strong>Keep</strong>. Windows SmartScreen may say &ldquo;Windows protected your PC&rdquo;: click <strong>More info</strong>, check that the publisher is iQagent, then click <strong>Run anyway</strong>.</p>
   <p class="lead">The installer is code-signed. Questions or trouble installing? <a href="mailto:bob.meads@iqagent.com?subject=Archive%20Extractor%20trial">Email us</a>.</p>
@@ -443,6 +449,7 @@
   <details><summary>Can I export from a WinCC PC over the network?</summary><p>Yes, with the <strong>Running WinCC project</strong> source. Enter the other PC&rsquo;s SQL Server, for example <code>WINCCPC01\WinCC</code>, and you can read its runtime databases from your own PC. You need Windows access to that SQL Server, and the WinCC OLE DB provider must be installed on the PC you run the tool on.</p><p>The <strong>Archive DB folder</strong> source doesn&rsquo;t work over the network, because SQL Server opens archive files from its own disks. Run the tool on the PC whose SQL Server holds the files, or copy the <code>.mdf</code> and <code>.ldf</code> files to a PC with SQL Server and the WinCC OLE DB provider. For other setups, <a href="mailto:bob.meads@iqagent.com">contact us</a>.</p></details>
   <details><summary>My tag list found nothing. Why?</summary><p>Tag names are case-sensitive, so <code>temp1</code> doesn&rsquo;t match <code>Temp1</code>. After an export, entries that matched no tag are listed, with a &ldquo;did you mean&hellip;?&rdquo; hint where only the case differs, and saved to <code>UnmatchedTags.txt</code> so you can correct and re-import them. Also check that the tags exist in the archives you exported.</p></details>
   <details><summary>Why did my CSV get duplicate rows?</summary><p>Files are appended to. If you run the same export twice, or export the same range from both sources, every row appears twice. Use an empty output folder, or delete the old files first. The same applies after you change the CSV layout, because the header is only written when a file is created.</p></details>
+  <details><summary>Can I run several exports in one go?</summary><p>Yes, with a license. Set up the main window for one export and click <strong>Add current settings</strong> in the <strong>Batch&hellip;</strong> window, then repeat for each export and click <strong>Run batch</strong>. Each item runs in turn with the same checks as a normal export and writes its own <code>ArchiveStats.txt</code> and <code>Errors.txt</code>. A summary of the batch, one line per item, goes to <code>BatchLog.txt</code>.</p><p>An item that can&rsquo;t run, such as one with an empty tag list or a missing folder, is marked <em>Failed</em> and the batch carries on. You can stop the batch at any time, and use <strong>Export&hellip;</strong> and <strong>Import&hellip;</strong> to keep several batches as files. The dates in an item are fixed when you add it. Batch isn&rsquo;t available in the free trial.</p></details>
   <details><summary>Can I stop an export part way through?</summary><p>Yes. <strong>Cancel On Next DB</strong> lets the archive being read finish and then stops. <strong>Stop Now</strong> stops after the current tag. Any archive the tool attached is detached again.</p></details>
   <details><summary>Which license do I need for a one-time migration?</summary><p>A Project Pass covers 30 days of use by one person.</p></details>
   <details><summary>I&rsquo;m an integrator. Can I use it at customer sites?</summary><p>Yes. Each person on your team needs a seat, and a seat can be used on any computer, including your customers&rsquo;, for work that person is doing. See the Integrator Pack.</p></details>

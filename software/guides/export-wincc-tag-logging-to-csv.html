@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16.png">
 <title>How to Export WinCC Tag Logging Data to CSV | iQagent</title>
 <meta name="description" content="How to get WinCC tag logging data out of archives and into CSV for Excel or SQL Server: the options, the pitfalls, and a step-by-step walkthrough.">
 <link rel="canonical" href="https://software.iqagent.com/guides/export-wincc-tag-logging-to-csv.html">
@@ -194,6 +197,7 @@
   <details><summary>Will exporting affect my running WinCC system?</summary><p>The tool only reads data. It doesn't detach or change archives that WinCC has attached. Very large exports add load to the SQL Server while they run, so schedule them sensibly.</p></details>
   <details><summary>Can I export averages, minimums or maximums instead of every value?</summary><p>Yes. Choose <em>Aggregate</em> in the Processing dialog: average, min, max, first, last, sum or count, over an interval from 1 second to 31 days. You get one row per interval for each tag, stamped with the start of the interval.</p></details>
   <details><summary>Can I export the last good value of each day for each tag?</summary><p>Yes. Choose <em>Last value per interval</em> in the Processing dialog, set the interval to 1 day and the quality to <em>Good only</em>. If the last values of the day are bad, for example because a PLC went offline, you get the last value logged while the quality was good. A day with no good value gives no row.</p></details>
+  <details><summary>Can I run several exports in one go?</summary><p>Yes, with a license. Set up the main window for one export, click <strong>Batch&hellip;</strong> then <strong>Add current settings</strong>, repeat for each export and click <strong>Run batch</strong>. Each item runs in turn and writes its own <code>ArchiveStats.txt</code>. Batch isn&rsquo;t available in the free trial.</p></details>
   <details><summary>Can I export only values above or below a limit?</summary><p>Yes, for raw values. Add a value test such as greater than 100 in the Processing dialog. Filtered output goes to separate files, and a filter can't be combined with an aggregate.</p></details>
   <details><summary>How do I stop the timestamps looking identical in Excel?</summary><p>Excel hides the date and hour on times that include milliseconds. The data is intact. Format the column with the custom format <code>yyyy-mm-dd hh:mm:ss.000</code> to display it in full.</p></details>
   

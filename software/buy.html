@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <title>Buy Archive Data Extractor for WinCC | iQagent</title>
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="css/style.css">
@@ -25,6 +28,12 @@
 <section><div class="wrap narrow">
   <h1>Checkout</h1>
   <p id="status">Opening checkout&hellip;</p>
+  <form class="order" id="order" hidden>
+    <label>Your name<input type="text" name="name" autocomplete="name" required><small>The person the license is issued to.</small></label>
+    <label>Company<input type="text" name="company" autocomplete="organization" required><small>Self-employed? Enter your own name.</small></label>
+    <label>Email<input type="email" name="email" autocomplete="email" required><small>Your license file is sent here.</small></label>
+    <button class="btn" type="submit">Continue to payment</button>
+  </form>
   <noscript><p>Checkout needs JavaScript. To order without it, email <a href="mailto:bob.meads@iqagent.com?subject=Archive%20Extractor%20order">bob.meads@iqagent.com</a>.</p></noscript>
   <p><a class="btn" id="retry" href="index.html#pricing">Back to pricing</a></p>
   <p class="lead">Orders are processed by Paddle, our payment provider and seller of record. Your license file arrives by email within one business day of purchase. See the <a href="refund.html">Refund Policy</a>.</p>
@@ -50,6 +59,8 @@
   };
 
   var status = document.getElementById("status");
+  var form = document.getElementById("order");
+  var retry = document.getElementById("retry");
   var params = new URLSearchParams(location.search);
   var plan = params.get("plan");
 
@@ -70,8 +81,10 @@
     eventCallback: function (e) {
       if (e.name === "checkout.completed") {
         status.textContent = "Thank you. Your license file will arrive by email within one business day.";
+        form.hidden = true;
       } else if (e.name === "checkout.closed") {
-        status.textContent = "Checkout closed. You can reopen it with the button below or go back to pricing.";
+        status.textContent = "Checkout closed. You can continue to payment again or go back to pricing.";
+        retry.hidden = false;
       }
     }
   });
@@ -81,13 +94,17 @@
 
   if (plan && PLANS[plan]) {
     var open = function () {
-      Paddle.Checkout.open({ items: [{ priceId: PLANS[plan], quantity: 1 }] });
+      var f = form.elements;
+      Paddle.Checkout.open({
+        items: [{ priceId: PLANS[plan], quantity: 1 }],
+        customer: { email: f.email.value.trim() },
+        customData: { name: f.name.value.trim(), company: f.company.value.trim(), plan: plan }
+      });
     };
-    var retry = document.getElementById("retry");
-    retry.textContent = "Open checkout";
-    retry.href = "#";
-    retry.addEventListener("click", function (ev) { ev.preventDefault(); open(); });
-    open();
+    status.textContent = "Tell us who the license is for, then continue to payment.";
+    form.hidden = false;
+    retry.hidden = true;
+    form.addEventListener("submit", function (ev) { ev.preventDefault(); open(); });
   } else {
     status.textContent = "Choose a license on the pricing page.";
   }
