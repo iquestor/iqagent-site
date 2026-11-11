@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <title>WinCC Tag Logging Export to CSV – Archive Data Extractor | iQagent</title>
-<meta name="description" content="Export WinCC Tag Logging Data to CSV for Excel or SQL Server. Reads archive .mdf files offline or a running project. WinCC SCADA and Professional.">
+<meta name="description" content="Export WinCC Tag Logging data to CSV. Reads archive .mdf files offline or a running project. WinCC SCADA and Professional.">
 <link rel="canonical" href="https://software.iqagent.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#20262d">
@@ -44,7 +44,7 @@
    "url": "https://software.iqagent.com/",
    "applicationCategory": "BusinessApplication",
    "operatingSystem": "Windows",
-   "description": "Export WinCC tag logging archives from WinCC SCADA and WinCC Professional to CSV for Excel, SQL Server or any database. Reads archive .mdf files offline or a running project.",
+   "description": "Export WinCC tag logging archives from WinCC SCADA and WinCC Professional to CSV. Reads archive .mdf files offline or a running project.",
    "image": "https://software.iqagent.com/images/archive_main_in_progress.png",
    "publisher": {
     "@id": "https://software.iqagent.com/#org"
@@ -280,11 +280,11 @@
 </head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="logo" href="index.html">iQagent <span>Software</span></a>
+  <a class="logo" href="/">iQagent <span>Software</span></a>
   <nav class="main">
     <a href="index.html#features">Features</a>
-    <a href="index.html#requirements">Requirements</a>
     <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#requirements">Requirements</a>
     <a href="index.html#faq">FAQ</a>
     <a href="support.html">Support</a>
     <a class="btn" href="index.html#download">Free trial</a>
@@ -293,10 +293,11 @@
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <h1>Export WinCC Tag Logging data to CSV for Excel, SQL Server, or any database.</h1>
-    <p class="sub">Archive Data Extractor for WinCC extracts tag logging data from WinCC SCADA and WinCC Professional archives and into clean CSV files, one per tag or everything in a single file, with correct time zones. Export every value, or one value per interval: averages, minimums, maximums, or the last good value of the day. Save your export setups and run them together as a batch. Reads in parallel, so large exports finish up to 2.5 times faster. Run it on a live system or on archive files copied from a plant PC.</p>
+    <h1>Export WinCC Tag Logging data to CSV, from offline archives or a running project.</h1>
+    <p class="sub">Archive Data Extractor reads <strong>WinCC SCADA</strong> <em>(V7.4 and later)</em> and <strong>WinCC Professional</strong> archives, with timestamps in your plant&rsquo;s time zone. Get every value, or one per interval: averages, min, max or last good value. Customized CSV output.</p>
     <div class="cta"><a class="btn" href="#download">Download free trial</a><a class="btn ghost" href="#pricing">See pricing</a></div>
-    <p class="fine">Windows &middot; Works offline, licenses never need an internet connection &middot; WinCC SCADA V7.4 through the current version, and WinCC Professional</p>
+    <p class="fine">Windows. Works offline. The free trial exports 24 hours of data per run, enough to confirm it reads your archives.</p>
+    <p class="fine" style="margin-top:6px">Developed by a Siemens Solution Partner working with WinCC since 1996.</p>
   </div>
   <figure class="hero-art">
     <img class="shot" src="images/hero_app.png" alt="Archive Data Extractor for WinCC finished exporting WinCC tag logging archives to CSV" width="1404" height="1100" fetchpriority="high">
@@ -304,9 +305,16 @@
   </figure>
 </div></div>
 
+<section class="alt" id="demo"><div class="wrap narrow">
+  <h2>See it in action</h2>
+  <p class="lead">A four-minute walkthrough: reading an archive folder or a running project, tag lists, raw or aggregated values, CSV output, and batch exports.</p>
+  <div class="video"><iframe src="https://www.youtube-nocookie.com/embed/8qzdwy1cPMI" title="Archive Data Extractor for WinCC: export WinCC Tag Logging archives to CSV" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <p class="fine"><a href="https://youtu.be/8qzdwy1cPMI">Watch on YouTube</a></p>
+</div></section>
+
 <section><div class="wrap narrow">
   <h2>Getting data out of WinCC archives</h2>
-  <p>You need last quarter&rsquo;s KPIs for a critical report. Or you need to retrieve last years data for regulatory compliance. Or you need data from an old project, and all you have is a backup folder of <code>.mdf</code> files.</p>
+  <p>You need last quarter&rsquo;s KPIs for a critical report. Or you need to retrieve last year&rsquo;s data for regulatory compliance. Or you need data from an old project, and all you have is a backup folder of <code>.mdf</code> files.</p>
   <p>WinCC&rsquo;s own export options assume a running system and a lot of manual work. Tag logging archives are stored compressed, so plain SQL can&rsquo;t read them. You need the WinCC OLE DB provider, which is installed with WinCC and with the WinCC Connectivity Pack. Exporting through it from SQL Server Management Studio into Excel is limited and slow, and it&rsquo;s easy to get the time zones wrong.</p>
   <p><strong>Step by step:</strong> <a href="guides/export-wincc-tag-logging-to-csv.html">How to export WinCC tag logging data to CSV</a>.</p>
 </div></section>
@@ -315,7 +323,7 @@
   <h2>Why You Need This Tool</h2>
   <div class="features">
     <div><h3>Read from Offline or Running WinCC Projects</h3><p>A folder of offline tag logging <code>.mdf</code> files, or the latest values from a running WinCC project, local or across the network.</p></div>
-    <div><h3>Fast!</h3><p>Requests 20 tags at a time and runs up to 8 requests in parallel, so large exports can finish up to 2.5 times faster. <a href="#speed">See the numbers</a>.</p></div>
+    <div><h3>Fast!</h3><p>Reads 20 tags per request and runs several requests in parallel. In one test, 815 tags took 8 minutes at Parallel 1 and 3 minutes at Parallel 4. <a href="#speed">See the numbers</a>.</p></div>
     <div><h3>Time zones done right</h3><p>Enter desired Time &amp; Date ranges in the plant&rsquo;s time zone versus Tag Logging&rsquo;s UTC database entries.</p></div>
     <div><h3>Choose Raw Values, Aggregate Functions</h3><p>One value per interval, from 1 second to 31 days: average, min, max, first, last, sum or count. Filter values by quality codes and ranges. </p></div>
     <div><h3>Customized CSV Output</h3><p>Choose columns, delimiter and timestamp format. One file per tag or all in one, split at a row limit so files still open in Excel.</p></div>
@@ -326,12 +334,12 @@
 </div></section>
 
 <section id="speed"><div class="wrap narrow">
-  <h2>Parallel reading: big exports in a fraction of the time</h2>
+  <h2>Parallel requests: same export, 8 minutes down to 3</h2>
   <p class="lead">WinCC takes a fixed amount of time to answer each request, however little data comes back. So the tool sends fewer, bigger requests (20 tags each, the most WinCC accepts) and keeps several in flight at once. Set <strong>Parallel</strong> to the number of simultaneous requests you want. The default is 4.</p>
   <div class="speed" role="img" aria-label="Export time for 815 tags: 8 minutes with Parallel 1, 4 minutes with Parallel 2, 3 minutes with Parallel 4">
-    <div class="srow"><span class="slabel">Parallel 1</span><span class="sbar" style="width:100%"></span><span class="sval">8 min</span></div>
-    <div class="srow"><span class="slabel">Parallel 2</span><span class="sbar" style="width:50%"></span><span class="sval">4 min</span></div>
-    <div class="srow"><span class="slabel">Parallel 4</span><span class="sbar best" style="width:37.5%"></span><span class="sval">3 min</span></div>
+    <div class="srow"><span class="slabel">Parallel 1</span><span class="strack"><span class="sbar" style="width:100%">8 min</span></span></div>
+    <div class="srow"><span class="slabel">Parallel 2</span><span class="strack"><span class="sbar mid" style="width:50%">4 min</span></span></div>
+    <div class="srow"><span class="slabel">Parallel 4</span><span class="strack"><span class="sbar best" style="width:37.5%">3 min</span></span></div>
   </div>
   <p class="fine" style="color:var(--muted);font-size:.88rem">Example: 815 tags read from a running WinCC 7.4 project. Your times depend on your server and archives.</p>
   <ul class="plain">
@@ -351,34 +359,73 @@
   <p>Want more detail on each step? <a href="guides/export-wincc-tag-logging-to-csv.html">Read the step-by-step guide</a>.</p>
   <div class="shots">
     <figure><img class="shot" src="images/archive_main.png" alt="Archive Data Extractor for WinCC main window with the Archive DB folder source selected for WinCC archive .mdf files" width="716" height="717" loading="lazy"><figcaption>Choose a folder of archive files, a date range and a time zone. The UTC range is shown for you.</figcaption></figure>
-    <figure><img class="shot" src="images/archive_running_wincc.png" alt="Extracting tag logging data from a running WinCC project's runtime database" width="716" height="717" loading="lazy"><figcaption>Or extract straight from the running project&rsquo;s runtime database.</figcaption></figure>
-    <figure><img class="shot" src="images/archive_main_in_progress.png" alt="An export in progress with the Stop Now and Cancel On Next DB buttons available" width="1404" height="1416" loading="lazy"><figcaption>Part way through a run. <strong>Cancel On Next DB</strong> or <strong>Stop Now</strong> ends it early.</figcaption></figure>
     <figure><img class="shot" src="images/Output_Format_Dialog.png" alt="Output format dialog showing columns, delimiter and a live preview" width="1404" height="1060" loading="lazy"><figcaption>Design your CSV layout and see a live preview of the first row. Add literal text columns, empty columns, and pieces of the tag name.</figcaption></figure>
-    <figure class="sm"><img class="shot" src="images/Tag%20Lists.png" alt="Tag list dialog for filtering WinCC tags with wildcards" width="1130" height="1172" loading="lazy"><figcaption>Filter by tag with a list that supports wildcards. Tag names are case-sensitive.</figcaption></figure>
-    <figure class="sm"><img class="shot" src="images/Data_Type_Last_Value.png" alt="Processing dialog set to the last good value of each day" width="576" height="579" loading="lazy"><figcaption>Choose what each row contains: every value, the last value of each interval with the quality you need, or an aggregate such as an average.</figcaption></figure>
-  </div>
-  <h2 style="margin-top:48px">What you get</h2>
-  <p class="lead">One CSV file per tag, in a year and month folder taken from your start date. Prefer one file for everything? Choose &ldquo;All tags in one file&rdquo; and it starts a new file at a row limit you set, up to 1,000,000 rows, so each one still opens in Excel. The same limit applies to per-tag files, which continue in a second file when one fills up. Open them in Excel, or import them into SQL Server or any standard database, such as Oracle, MySQL, PostgreSQL or Microsoft Access.</p>
-  <div class="shots">
-    <figure><img class="shot" src="images/csv_folder.png" alt="Output folder showing one CSV file per WinCC tag" width="802" height="377" loading="lazy"><figcaption>The output folder, named for the year and month of your start date. By default there is one CSV per tag. <code>ArchiveStats.txt</code> reports how many values were exported for each tag, and how long the run took. If you export a tag list, <code>UnmatchedTags.txt</code> lists any entries that matched no tag.</figcaption></figure>
-    <figure><img class="shot" src="images/excel_output.png" alt="WinCC tag logging data exported to CSV and opened in Excel, showing tag name, UTC and local timestamps, value and quality code" width="946" height="453" loading="lazy"><figcaption>Opened in Excel. Output Format can be customized.</figcaption></figure>
-    <figure style="grid-column:1/-1;max-width:900px;margin:0 auto"><img class="shot" src="images/csv_text.png" alt="WinCC archive data exported as CSV, shown in a plain text editor" width="1139" height="608" loading="lazy"><figcaption>Or as plain text, ready to import into SQL Server or any other database.</figcaption></figure>
+    <figure style="grid-column:1/-1;max-width:900px;margin:0 auto"><img class="shot" src="images/excel_output.png" alt="WinCC tag logging data exported to CSV and opened in Excel, showing tag name, UTC and local timestamps, value and quality code" width="946" height="453" loading="lazy"><figcaption>Opened in Excel. Output Format can be customized.</figcaption></figure>
   </div>
 </div></section>
 
-<section id="use-cases"><div class="wrap narrow">
+<section><div class="wrap narrow">
+  <h2>What you get</h2>
+  <p class="lead">One CSV file per tag, in a year and month folder taken from your start date. Prefer one file for everything? Choose &ldquo;All tags in one file&rdquo; and it starts a new file at a row limit you set, up to 1,000,000 rows, so each one still opens in Excel. The same limit applies to per-tag files, which continue in a second file when one fills up. Open them in Excel, or import them into SQL Server or any standard database, such as Oracle, MySQL, PostgreSQL or Microsoft Access.</p>
+</div></section>
+
+<section class="alt" id="use-cases"><div class="wrap narrow">
   <h2>Export WinCC tag logging data for reports, migrations and recovery</h2>
   <p>Archive Data Extractor for WinCC works with the tag logging (process value) archives of WinCC SCADA and WinCC Professional. Typical jobs:</p>
   <ul class="plain">
     <li><strong>Export WinCC tag logging to Excel or CSV</strong> for reports, trend analysis and audits, in the plant&rsquo;s time zone.</li>
     <li><strong>Get daily or hourly values for reports</strong>: the last good value of each day for every tag, even if a PLC was offline at the end of the day, or hourly averages, minimums and maximums for trend reports.</li>
     <li><strong>Repeat the same exports without re-entering settings</strong>: save each export as a batch item, such as daily last good values and hourly averages for different tag lists, and run them all with one click.</li>
-    <li><strong>Migrate WinCC historical data</strong> to SQL Server, Oracle, PostgreSQL or another historian when you move to a new platform.</li>
+    <li><strong>Migrate WinCC historical data</strong> to a new platform or historian when you move.</li>
     <li><strong>Recover process data from archive backups.</strong> Read copied <code>.mdf</code> files from a stopped, failed or decommissioned system, without the WinCC project.</li>
-    <li><strong>Pull the latest values from a running project</strong>, including over the network from another PC&rsquo;s SQL Server.</li>
-    <li><strong>Get archive data out of WinCC Professional</strong> as well as WinCC SCADA V7.4 and later. WinCC Unified is not supported.</li>
+    <li><strong>Pull the latest values from a running project</strong>, including over the network from another WinCC PC&rsquo;s SQL Server.</li>
+    <li><strong>Get archived data out of WinCC SCADA</strong> <em>(V7.4 and later)</em> as well as WinCC Professional. WinCC Unified is not supported.</li>
   </ul>
   <p>New to this? Read the guide: <a href="guides/export-wincc-tag-logging-to-csv.html">how to export WinCC tag logging data to CSV</a>.</p>
+</div></section>
+
+<section class="cta-band"><div class="wrap narrow">
+  <p>Not sure it reads your archives? Try the free trial!<span>It exports up to 24 hours of data per run.</span></p>
+  <a class="btn" href="#download">Download free trial</a>
+</div></section>
+
+<section id="about"><div class="wrap narrow">
+  <h2>Built by someone who has worked with WinCC since 1996</h2>
+  <p>I&rsquo;ve worked with WinCC since 1996, starting on the original Siemens team that brought it to the American market. In 1998 I started my own company, iQuest, and later created iQagent, a Siemens Solution Provider. Getting data out of WinCC archives has been a problem the whole time: the data is compressed, so the tools Siemens provides need SQL programming and OLE DB expertise. People kept asking me to pull data out of projects that could no longer run, or to feed it into analytics the OLE DB provider can&rsquo;t reach directly. Archive Data Extractor is what I built to do that job without the programming. If it doesn&rsquo;t read your archives, email me at <a href="mailto:bob.meads@iqagent.com">bob.meads@iqagent.com</a> and I&rsquo;ll look at it myself.</p>
+  <p class="signoff">Bob Meads, iQagent</p>
+</div></section>
+
+<section class="alt" id="pricing"><div class="wrap">
+  <h2>Pick the license that fits the job</h2>
+  <p class="lead">Prices in USD. Taxes are calculated at checkout.</p>
+  <div class="pricing">
+    <div class="plan"><h3>Project Pass</h3><div class="best">One migration or investigation</div>
+      <div class="price">$129</div>
+      <ul><li>30 days</li><li>1 person</li><li>No renewal</li></ul><a class="btn" href="buy.html?plan=pass">Buy Project Pass</a></div>
+    <div class="plan featured"><div class="badge">Most popular</div><h3>Single User</h3><div class="best">Plant engineers and analysts</div>
+      <div class="price">$349</div>
+      <ul><li>Yours to keep</li><li>1 year of updates included</li><li>$99/year to renew updates</li><li>1 person</li></ul><a class="btn" href="buy.html?plan=single">Buy Single User</a></div>
+    <div class="plan"><h3>Integrator Pack</h3><div class="best">Integrators working across customers</div>
+      <div class="price">$1,199 <small>for 5 seats</small></div>
+      <ul><li>Yours to keep</li><li>1 year of updates included</li><li>$299/year per pack to renew updates</li><li>5 named people</li></ul><a class="btn" href="buy.html?plan=integrator">Buy Integrator Pack</a></div>
+  </div>
+  <p class="pricing-note">Need more than five seats, or want a quote for a purchase order? Email <a href="mailto:bob.meads@iqagent.com">bob.meads@iqagent.com</a>.</p>
+  <ul class="notes plain" style="margin-top:28px">
+    <li><strong>Free trial</strong> with no license file: exports up to 24 hours of data per run, so you can confirm it reads your archives and your CSV layout is right. Batch runs need a license.</li>
+    <li><strong>Licenses belong to a person, not a computer.</strong> Install it on your laptop, a client&rsquo;s PC, or a plant PC. Just don&rsquo;t share your license file with someone else. Each person needs their own.</li>
+    <li><strong>&ldquo;Yours to keep&rdquo; means</strong> the version you bought and every update released during your update period keep working forever. After that you can keep using your last covered version, or renew for newer ones.</li>
+    <li><strong>Need an invoice or a purchase order?</strong> Email <a href="mailto:bob.meads@iqagent.com">bob.meads@iqagent.com</a> and we&rsquo;ll set it up.</li>
+    <li><strong>Try before you buy:</strong> use the free trial to check compatibility with your archives. You can also request a refund for any reason within 14 days of purchase. See the <a href="refund.html">Refund Policy</a><a href="guides/export-wincc-tag-logging-to-csv.html">Guides</a>.</li>
+  </ul>
+</div></section>
+
+<section id="download"><div class="wrap narrow">
+  <h2>Try it free</h2>
+  <p>The trial needs no license file. Download the installer, run it, and point it at your archives. It exports up to 24 hours of data per run, which is enough to check that it reads your archives and that your CSV layout is right. Batch runs are part of the licensed tool.</p>
+  <p><a class="btn" href="download.html">Download for Windows</a></p>
+  <p class="lead"><strong>Seeing a warning?</strong> New downloads often trigger one. Chrome may say the file &ldquo;isn&rsquo;t commonly downloaded&rdquo;: open the download menu and choose <strong>Keep</strong>. Windows SmartScreen may say &ldquo;Windows protected your PC&rdquo;: click <strong>More info</strong>, check that the publisher is iQagent, then click <strong>Run anyway</strong>.</p>
+  <p class="lead">The installer is code-signed. Questions or trouble installing? <a href="mailto:bob.meads@iqagent.com?subject=Archive%20Extractor%20trial">Email us</a>.</p>
+  <p class="lead">After you buy, your license file arrives by email. In the app, click <strong>License&hellip;</strong> and import the file or paste the text. Delivery time: within one business day of purchase.</p>
 </div></section>
 
 <section class="alt" id="requirements"><div class="wrap narrow">
@@ -393,42 +440,6 @@
   <p><strong>Already have WinCC on the PC?</strong> Then the WinCC OLE DB provider is already installed. Run the tool on that PC and point it at a folder of archive files. There&rsquo;s nothing else to find or install. On a PC without WinCC, install the WinCC Connectivity Pack, which includes the provider and can be installed on its own.</p>
   <p><strong>Supported:</strong> WinCC V7.4 through the current version, and WinCC Professional. <strong>Not supported:</strong> WinCC Unified.</p>
   <div class="tip"><strong>Tip:</strong> Work on copies of archives you need to keep. Attaching a file to a newer SQL Server version upgrades it permanently. The software checks first, lists any files that would be upgraded, and asks for your confirmation before it attaches them. The default answer is No, so nothing is upgraded unless you agree.</div>
-  <figure style="margin-top:20px"><img class="shot" src="images/Old_Database_Warning.png" alt="Warning dialog listing archive files that would be upgraded, with Yes and No buttons" width="898" height="672" loading="lazy" style="max-width:480px"><figcaption>The warning shown before older archive files are attached and upgraded.</figcaption></figure>
-</div></section>
-
-<section id="pricing"><div class="wrap">
-  <h2>Pick the license that fits the job</h2>
-  <p class="lead">Prices in USD. Taxes are calculated at checkout.</p>
-  <div class="pricing">
-    <div class="plan"><h3>Project Pass</h3><div class="best">One migration or investigation</div>
-      <div class="price">$129</div>
-      <ul><li>30 days</li><li>1 person</li><li>No renewal</li></ul><a class="btn" href="buy.html?plan=pass">Buy Project Pass</a></div>
-    <div class="plan featured"><h3>Single User</h3><div class="best">Plant engineers and analysts</div>
-      <div class="price">$349</div>
-      <ul><li>Yours to keep</li><li>1 year of updates included</li><li>$99/year to renew updates</li><li>1 person</li></ul><a class="btn" href="buy.html?plan=single">Buy Single User</a></div>
-    <div class="plan"><h3>Integrator Pack</h3><div class="best">Integrators working across customers</div>
-      <div class="price">$1,199 <small>for 5 seats</small></div>
-      <ul><li>Yours to keep</li><li>1 year of updates included</li><li>$299/year per pack to renew updates</li><li>5 named people</li></ul><a class="btn" href="buy.html?plan=integrator">Buy Integrator Pack</a></div>
-    <div class="plan"><h3>Site</h3><div class="best">Plants and engineering groups</div>
-      <div class="price">Contact us</div>
-      <ul><li>Yours to keep</li><li>1 year of updates included</li><li>Renewal by quote</li><li>Users by agreement</li></ul><a class="btn" href="mailto:bob.meads@iqagent.com?subject=Site%20license%20quote">Request a quote</a></div>
-  </div>
-  <ul class="notes plain" style="margin-top:28px">
-    <li><strong>Free trial</strong> with no license file: exports up to 24 hours of data per run, so you can confirm it reads your archives and your CSV layout is right. Batch runs need a license.</li>
-    <li><strong>Licenses belong to a person, not a computer.</strong> Install it on your laptop, a client&rsquo;s PC, or a plant PC. Just don&rsquo;t share your license file with someone else. Each person needs their own.</li>
-    <li><strong>&ldquo;Yours to keep&rdquo; means</strong> the version you bought and every update released during your update period keep working forever. After that you can keep using your last covered version, or renew for newer ones.</li>
-    <li><strong>Need an invoice or a purchase order?</strong> Email <a href="mailto:bob.meads@iqagent.com">bob.meads@iqagent.com</a> and we&rsquo;ll set it up.</li>
-    <li><strong>Try before you buy:</strong> use the free trial to check compatibility with your archives. You can also request a refund for any reason within 14 days of purchase. See the <a href="refund.html">Refund Policy</a><a href="guides/export-wincc-tag-logging-to-csv.html">Guides</a>.</li>
-  </ul>
-</div></section>
-
-<section class="alt" id="download"><div class="wrap narrow">
-  <h2>Try it free</h2>
-  <p>The trial needs no license file. Download the installer, run it, and point it at your archives. It exports up to 24 hours of data per run, which is enough to check that it reads your archives and that your CSV layout is right. Batch runs are part of the licensed tool.</p>
-  <p><a class="btn" href="download.html">Download for Windows</a></p>
-  <p class="lead"><strong>Seeing a warning?</strong> New downloads often trigger one. Chrome may say the file &ldquo;isn&rsquo;t commonly downloaded&rdquo;: open the download menu and choose <strong>Keep</strong>. Windows SmartScreen may say &ldquo;Windows protected your PC&rdquo;: click <strong>More info</strong>, check that the publisher is iQagent, then click <strong>Run anyway</strong>.</p>
-  <p class="lead">The installer is code-signed. Questions or trouble installing? <a href="mailto:bob.meads@iqagent.com?subject=Archive%20Extractor%20trial">Email us</a>.</p>
-  <p class="lead">After you buy, your license file arrives by email. In the app, click <strong>License&hellip;</strong> and import the file or paste the text. Delivery time: within one business day of purchase.</p>
 </div></section>
 
 <section id="faq"><div class="wrap narrow">
@@ -457,6 +468,24 @@
   <details><summary>What if it doesn&rsquo;t work with my archives?</summary><p>Please try the free trial first to check compatibility. If you&rsquo;ve bought a license and it doesn&rsquo;t work with your archives, email us and we&rsquo;ll work to fix it. You can also request a refund for any reason within 14 days of purchase. See the <a href="refund.html">Refund Policy</a>.</p></details>
   <details><summary>Is this affiliated with Siemens?</summary><p>No. Archive Data Extractor for WinCC is an independent product of iQagent. It works with archives created by Siemens WinCC.</p></details>
   <details><summary>Can I get it to run automatically on a schedule?</summary><p>No. It&rsquo;s a desktop application you run when you need an export. It isn&rsquo;t designed to run unattended or on a schedule.</p></details>
+</div></section>
+
+<section class="cta-band"><div class="wrap narrow">
+  <p>Not sure it reads your archives? Try the free trial!<span>It exports up to 24 hours of data per run.</span></p>
+  <a class="btn" href="#download">Download free trial</a>
+</div></section>
+
+<section class="alt"><div class="wrap wide">
+  <h2>More screenshots</h2>
+  <div class="shots">
+    <figure><img class="shot" src="images/archive_running_wincc.png" alt="Extracting tag logging data from a running WinCC project's runtime database" width="716" height="717" loading="lazy"><figcaption>Or extract straight from the running project&rsquo;s runtime database.</figcaption></figure>
+    <figure><img class="shot" src="images/archive_main_in_progress.png" alt="An export in progress with the Stop Now and Cancel On Next DB buttons available" width="1404" height="1416" loading="lazy"><figcaption>Part way through a run. <strong>Cancel On Next DB</strong> or <strong>Stop Now</strong> ends it early.</figcaption></figure>
+    <figure class="sm"><img class="shot" src="images/Tag%20Lists.png" alt="Tag list dialog for filtering WinCC tags with wildcards" width="1130" height="1172" loading="lazy"><figcaption>Filter by tag with a list that supports wildcards. Tag names are case-sensitive.</figcaption></figure>
+    <figure class="sm"><img class="shot" src="images/Data_Type_Last_Value.png" alt="Processing dialog set to the last good value of each day" width="576" height="579" loading="lazy"><figcaption>Choose what each row contains: every value, the last value of each interval with the quality you need, or an aggregate such as an average.</figcaption></figure>
+    <figure><img class="shot" src="images/csv_folder.png" alt="Output folder showing one CSV file per WinCC tag" width="802" height="377" loading="lazy"><figcaption>The output folder, named for the year and month of your start date. By default there is one CSV per tag. <code>ArchiveStats.txt</code> reports how many values were exported for each tag, and how long the run took. If you export a tag list, <code>UnmatchedTags.txt</code> lists any entries that matched no tag.</figcaption></figure>
+    <figure style="grid-column:1/-1;max-width:900px;margin:0 auto"><img class="shot" src="images/csv_text.png" alt="WinCC archive data exported as CSV, shown in a plain text editor" width="1139" height="608" loading="lazy"><figcaption>Or as plain text, ready to import into SQL Server or any other database.</figcaption></figure>
+    <figure class="sm"><img class="shot" src="images/Old_Database_Warning.png" alt="Warning dialog listing archive files that would be upgraded, with Yes and No buttons" width="898" height="672" loading="lazy"><figcaption>The warning shown before older archive files are attached and upgraded.</figcaption></figure>
+  </div>
 </div></section>
 
 <footer class="site"><div class="wrap">
