@@ -1,6 +1,17 @@
 # iqagent site: project notes
 
-Last updated: 2026-10-24. Written so a new session can pick up without re-deriving anything.
+Last updated: 2026-11-24. Written so a new session can pick up without re-deriving anything.
+
+## Update 2026-11-24 (design refresh with Impeccable)
+
+- **Direction:** iQagent is the flagship and iqagent.com leads with it. Bob plans other software and **services** under iQagent (not iQuest). The Extractor is link-only on the brand site ("Other tools" in the nav and footer, plus a "More from iQagent" row on the home page); its marketing goes straight to software.iqagent.com. The home page describes iQagent as delivering "industrial automation solutions". Services are not described on the site yet; do not invent any.
+- **Context files at repo root (not published):** `PRODUCT.md` (product truth, audiences, constraints) and `DESIGN.md` (the visual system), plus `.impeccable/design.json` (sidecar). Read them before design work. A saved critique of `main/` is in `.impeccable/critique/` (local, git-ignored).
+- **New palette on `main/` only:** steel navy (#13293d) bars, signal amber (#f5a300) buttons with dark ink text, steel-blue links. White text on amber fails contrast, so buttons use dark text. `software/css/style.css` still has the old orange/charcoal palette and the dark-mode button contrast bug; update it together with the Paddle cutover.
+- **Home page:** hero and "Less time hunting for information" section zigzag (image right, then image left); all sections share a 1240px container. The old "Two products" cards are gone.
+- **Product page:** the "Features" section was removed (it duplicated "What it does for your team"); the 15-minute setup claim moved into the security section.
+- **Images:** `main/images/iqagent_poi_list.jpg` (phone photo) and the screenshots on the product page come from the original iqagent.com site; Bob is licensed to use any image from it.
+- **YouTube embed error 153** ("Video player configuration error") only appears when a page is opened from disk (`file://`). Preview with `python -m http.server` inside `main/` and it plays.
+- **Open decisions:** whether to cut push notifications (Bob is leaning toward cutting them: no one appeared to use it); iQagent pricing and licensing (Bob will supply); the services content.
 
 ## Goal
 

@@ -5,3 +5,10 @@
 paddle API Key.txt
 .claude/
 cloudflare-bob.meads@iquestcorp.com-2026.11.10.txt
+
+# Impeccable local runtime
+.impeccable/config.local.json
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/hook.cache.json

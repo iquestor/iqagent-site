@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T16:57:18.081092+00:00",
+  "title": "Design System: iQagent sites",
+  "extensions": {
+    "colorMeta": {
+      "signal-amber": {
+        "role": "primary",
+        "displayName": "Signal Amber",
+        "canonical": "#f5a300",
+        "tonalRamp": [
+          "#835700",
+          "#bc7d00",
+          "#f5a300",
+          "#f8bc45",
+          "#fad07c",
+          "#fce0aa",
+          "#fdeecf",
+          "#fef6e5"
+        ]
+      },
+      "amber-bright": {
+        "role": "primary",
+        "displayName": "Amber Bright",
+        "canonical": "#ffb52e",
+        "tonalRamp": [
+          "#886119",
+          "#c38b23",
+          "#ffb52e",
+          "#ffc966",
+          "#ffd994",
+          "#ffe6b9",
+          "#fff1d7",
+          "#fff8ea"
+        ]
+      },
+      "steel-blue": {
+        "role": "secondary",
+        "displayName": "Steel Blue",
+        "canonical": "#1f5f94",
+        "tonalRamp": [
+          "#11334f",
+          "#184971",
+          "#1f5f94",
+          "#5b8ab1",
+          "#8cadc8",
+          "#b4cadb",
+          "#d4e1eb",
+          "#e9eff4"
+        ]
+      },
+      "steel-navy": {
+        "role": "neutral",
+        "displayName": "Steel Navy",
+        "canonical": "#13293d",
+        "tonalRamp": [
+          "#0a1621",
+          "#0f1f2f",
+          "#13293d",
+          "#536371",
+          "#86919b",
+          "#b0b8be",
+          "#d2d6da",
+          "#e7eaec"
+        ]
+      },
+      "ink-navy": {
+        "role": "neutral",
+        "displayName": "Ink Navy",
+        "canonical": "#14212e",
+        "tonalRamp": [
+          "#0b1219",
+          "#0f1923",
+          "#14212e",
+          "#535d66",
+          "#868d94",
+          "#b1b5b9",
+          "#d2d5d7",
+          "#e7e9ea"
+        ]
+      },
+      "slate-muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#51606f",
+        "tonalRamp": [
+          "#2b333b",
+          "#3e4a55",
+          "#51606f",
+          "#808b96",
+          "#a6adb5",
+          "#c5cacf",
+          "#dee1e4",
+          "#eeeff1"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#f3f6f9",
+        "tonalRamp": [
+          "#828385",
+          "#babdbf",
+          "#f3f6f9",
+          "#f6f8fb",
+          "#f9fafc",
+          "#fbfcfd",
+          "#fdfdfe",
+          "#fefefe"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero h1."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card and feature headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Captions and fine print."
+      }
+    },
+    "shadows": [
+      {
+        "name": "photo",
+        "value": "0 10px 30px rgba(0,0,0,.25)",
+        "purpose": "Photos and video on both sites."
+      },
+      {
+        "name": "hero-screenshot",
+        "value": "0 24px 60px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3)",
+        "purpose": "Large hero image on the software site only."
+      }
+    ],
+    "motion": [],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "480px"
+      },
+      {
+        "name": "features-stack",
+        "value": "700px"
+      },
+      {
+        "name": "tablet",
+        "value": "820px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action: book a demo, download, buy.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Book a demo</a>",
+      "css": ".ds-btn{display:inline-block;padding:12px 22px;border-radius:8px;background:#f5a300;color:#14212e;text-decoration:none;font:600 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;border:2px solid #f5a300} .ds-btn:hover{background:#ffb52e;border-color:#ffb52e} .ds-btn:focus-visible{outline:3px solid #1f5f94;outline-offset:2px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action on the dark hero.",
+      "html": "<div class=\"ds-ghost-bg\"><a class=\"ds-ghost\" href=\"#\">See our products</a></div>",
+      "css": ".ds-ghost-bg{background:#13293d;padding:20px} .ds-ghost{display:inline-block;padding:12px 22px;border-radius:8px;background:transparent;color:#fff;text-decoration:none;font:600 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;border:2px solid #fff} .ds-ghost:hover{background:rgba(255,255,255,.12)}"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "site-header",
+      "description": "Sticky charcoal bar with bright-orange bottom line.",
+      "html": "<header class=\"ds-head\"><span class=\"ds-logo\">iQ<span>agent</span></span><nav><a href=\"#\">Products</a><a href=\"#\">Contact</a><a class=\"ds-nbtn\" href=\"#\">Book a demo</a></nav></header>",
+      "css": ".ds-head{display:flex;align-items:center;justify-content:space-between;min-height:60px;padding:0 20px;background:#13293d;border-bottom:3px solid #f5a300;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif} .ds-logo{font-weight:700;font-size:1.15rem;color:#fff} .ds-logo span{color:#f5a300;font-weight:400} .ds-head nav a{color:#d9dee3;text-decoration:none;margin-left:18px;font-size:.95rem} .ds-head nav a:hover{color:#fff;text-decoration:underline} .ds-head nav a.ds-nbtn{background:#f5a300;color:#14212e;padding:7px 14px;border-radius:8px;font-weight:600}"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Outlined, flat container for a feature or product.",
+      "html": "<div class=\"ds-card\"><h3>Quick to start</h3><p>Install on your own server, in the cloud or on a VM, and be useful the same day.</p></div>",
+      "css": ".ds-card{background:#fff;border:1px solid #d9e0e7;border-radius:10px;padding:20px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;color:#14212e} .ds-card h3{font-size:1.1rem;margin:0 0 6px} .ds-card p{margin:0;color:#51606f;font-size:.97rem;line-height:1.6}"
+    },
+    {
+      "name": "Step",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Numbered card used for how-it-works.",
+      "html": "<div class=\"ds-step\"><b>1</b><h3>Choose a source</h3><p>An archive folder or a running project.</p></div>",
+      "css": ".ds-step{position:relative;padding:20px 20px 20px 64px;background:#fff;border:1px solid #d9e0e7;border-radius:10px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;color:#14212e} .ds-step b{position:absolute;left:18px;top:18px;width:30px;height:30px;border-radius:50%;background:#f5a300;color:#14212e;display:flex;align-items:center;justify-content:center} .ds-step h3{font-size:1.1rem;margin:0 0 6px} .ds-step p{margin:0;color:#51606f;font-size:.97rem}"
+    },
+    {
+      "name": "Proof Stat",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Large number with muted caption.",
+      "html": "<div class=\"ds-stat\"><b>15 min</b><span>A typical setup, including your first POI</span></div>",
+      "css": ".ds-stat{text-align:center;padding:16px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif} .ds-stat b{display:block;font-size:2.2rem;line-height:1.1;color:#1f5f94} .ds-stat span{color:#51606f;font-size:.95rem}"
+    },
+    {
+      "name": "Featured Plan",
+      "kind": "card",
+      "refersTo": "",
+      "description": "Pricing card with orange border and badge.",
+      "html": "<div class=\"ds-plan\"><span class=\"ds-badge\">Most popular</span><h3>Single User</h3><div class=\"ds-price\">$349</div><a class=\"ds-pb\" href=\"#\">Buy Single User</a></div>",
+      "css": ".ds-plan{position:relative;background:#fff;border:2px solid #f5a300;border-radius:10px;padding:24px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;color:#14212e;max-width:260px} .ds-badge{position:absolute;top:-13px;left:24px;background:#f5a300;color:#14212e;font-size:.78rem;font-weight:700;padding:2px 12px;border-radius:999px} .ds-plan h3{margin:0;font-size:1.1rem} .ds-price{font-size:2rem;font-weight:700;margin:10px 0 14px} .ds-pb{display:block;text-align:center;padding:12px;border-radius:8px;background:#f5a300;color:#14212e;text-decoration:none;font-weight:600}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Plant-Floor Placard",
+    "overview": "The sites look like equipment signage: a deep steel-navy bar across the top, signal amber where something needs attention, and plain dark-on-white text on a clean page. There is no decoration for its own sake. Real product photos and real numbers carry the visual weight, and the type is the operating system's own font. Amber reads as an andon or warning lamp, and the navy echoes the blue motors in the hero photo.",
+    "keyCharacteristics": [
+      "Steel-navy header, hero and footer bands framing a light content area",
+      "One accent, signal amber, with dark ink text on it",
+      "System font stack, bold headings, regular body, no display face",
+      "Flat cards with a 1px hairline border and a 10px corner; shadows only on photos and video",
+      "Light and dark themes through prefers-color-scheme",
+      "Loud yellow placeholders so unfinished copy cannot ship by accident"
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Amber is the only accent. It marks actions and counted or chosen things, not decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Dark-on-Amber Rule",
+        "body": "Text on amber is Ink Navy. White on amber fails contrast.",
+        "section": "colors"
+      },
+      {
+        "name": "The Loud Placeholder Rule",
+        "body": "Unfinished copy is pale yellow. A page with any yellow like that on it is not ready to publish.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Web-Font Rule",
+        "body": "The system stack is a constraint of the current design, not an oversight. Changing it is a deliberate redesign decision.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-Cards Rule",
+        "body": "Cards are outlined, not lifted. Shadows belong to photos and video.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep amber for actions and counted or chosen things (buttons, steps, featured option), with Ink Navy text on it.",
+      "Do use the system font stack and bold weights for hierarchy.",
+      "Do show real product photos and screenshots with the existing border, corner and shadow.",
+      "Do alternate white and mist sections, keep 56px section padding, and keep sections on the shared 1240px container.",
+      "Do keep both light and dark themes working (they use the same variables).",
+      "Do make unfinished copy pale yellow (.ph, .draft-banner) so it is obvious."
+    ],
+    "donts": [
+      "Don't put white text on amber; it fails contrast.",
+      "Don't add a second accent color or decorative gradients; the only gradient is the navy hero.",
+      "Don't put shadows on cards. They belong to photos and video.",
+      "Don't introduce web fonts without treating it as a redesign decision.",
+      "Don't add stock photography, invented logos, customer names or testimonials. PRODUCT.md says none exist.",
+      "Don't let the two sites' CSS drift further apart without deciding whether they should share one file."
+    ]
+  }
+}
